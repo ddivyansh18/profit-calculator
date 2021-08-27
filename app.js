@@ -9,15 +9,27 @@ function calculateProfitOrLoss(initial, quantity, current) {
     if(initial > current) {
         var loss = (initial - current) * quantity;
         var lossPercentage = (loss / initial) * 100;
-        console.log(loss, lossPercentage);
+        output.innerText =  "There is a loss of " + loss + " which is " + lossPercentage.toFixed(2) + "% of inital price."
+        ;
     } else if(current > initial) {
         var profit = (current - initial) * quantity;
         var profitPercentage = (profit / initial) * 100;
-        console.log(profit, profitPercentage)
+        output.innerText =  "There is a profit of " + profit + " which is " + profitPercentage.toFixed(2) + "% of inital price."
     } else {
-
+        output.innerText = "No pain, no gain in this case !"
     }
 
 }
 
-calculateProfitOrLoss(100,10,110)
+function submitHandler() {
+
+    const initialPriceValue = Number(initialPrice.value);
+    const quantityValue = Number(stocksQuantity.value);
+    const currentPriceValue = Number(currentPrice.value);
+
+
+    calculateProfitOrLoss(initialPriceValue,quantityValue,currentPriceValue);
+}
+
+
+submitButton.addEventListener("click", submitHandler);
